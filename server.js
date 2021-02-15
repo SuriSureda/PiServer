@@ -4,7 +4,7 @@ const app = express();
 let port = 8001;
 
 app.get('/', (req, res) => {
-    res.send(`<p>An alligator approaches!</p><p>Listenining on port ${port}</p>`);
+    res.status(200).send(`<p>An alligator approaches!</p><p>Listenining on port ${port}</p>`);
 });
 
 
