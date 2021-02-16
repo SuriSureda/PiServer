@@ -6,7 +6,7 @@ const led = new Gpio(17, {mode: Gpio.OUTPUT});
 let port = 8001;
 
 app.get('/', (req, res) => {
-    res.status(200).send(`Led now is ${led.digitalRead()}`);
+    res.status(200).send(`Wellcome !! Current led states is : ${led.digitalRead()}`);
 });
 
 app.get('/on', (req, res) => {
