@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const Gpio = require('pigpio').Gpio;
 const led = new Gpio(17, {mode: Gpio.OUTPUT});
+const wakeHeroku = require("./wakeHeroku");
 
 let port = 8001;
 
@@ -20,4 +21,7 @@ app.get('/off',(req, res) => {
 })
 
 
-app.listen(port, () => console.log('Raspberry pi server listening on port'+port));
+app.listen(port, () => {
+    console.log('Raspberry pi server listening on port'+port)
+    wakeHeroku(process.env.API_CONN,);
+});
