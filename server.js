@@ -23,5 +23,5 @@ app.get('/off',(req, res) => {
 
 app.listen(port, () => {
     console.log('Raspberry pi server listening on port'+port)
-    wakeHeroku(process.env.API_CONN,25);
+    wakeHeroku(process.env.HERO_URL,25);
 });
