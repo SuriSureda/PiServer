@@ -1,11 +1,16 @@
 const http = require('http');
 
+/**
+* @param {string} url - url to make request
+* @param {number} interval - interval time in minutes
+*
+*/
 const wakeHeroku = (url, interval) => {
     const milliseconds = interval * 60000;
     setTimeout(() => { 
 
         try { 
-            http.request(process.env.HERO_URL, (res)=> {
+            http.get(process.env.HERO_URL, (res)=> {
                 console.log(res);
             })
         }
