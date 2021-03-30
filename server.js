@@ -5,7 +5,6 @@ const app = express();
 const Gpio = require('pigpio').Gpio;
 const led = new Gpio(17, {mode: Gpio.OUTPUT});
 const fs = require('fs');
-const wakeHeroku = require("./wakeHeroku");
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -14,8 +13,8 @@ const privateKey = fs.readFileSync('/etc/letsencrypt/live/raspberrymurta.ddns.ne
 const certificate = fs.readFileSync('/etc/letsencrypt/live/raspberrymurta.ddns.net/cert.pem', 'utf8');
 const ca = fs.readFileSync('/etc/letsencrypt/live/raspberrymurta.ddns.net/chain.pem', 'utf8')
 
-let httpport = 8001;
-let httpsport = 8002;
+let httpport = process.env.HTTP_PORT;
+let httpsport = process.env.HTTPS_PORT;
 
 const credentials = {
                 key: privateKey,
@@ -53,5 +52,4 @@ httpServer.listen(httpport);
 
 httpsServer.listen(httpsport, () => {
     console.log('Raspberry pi server listening on port '+httpsport)
-    wakeHeroku(process.env.HERO_URL,25);
 });
